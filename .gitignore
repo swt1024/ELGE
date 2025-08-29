@@ -1,0 +1,40 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Ignore all compressed files
+*.zip
+*.gz
+*.rar
+*.7z
+
+# Ignore all data files
+*.bed
+*.gtf
+*.bigbed
+*.fasta
+*.svg
+*.fa
+*.fa.fai
+*.gaf
+*.bw
+*.rpt
+
+# Ignore the following folders
+PDF/
+.vscode/
+.idea/
+
+annotate/human/*.csv
+annotate/mouse/*.csv
+classifier/MLP/experiment_details
+classifier/SVM/experiment_details
+data/raw/*.csv
+data/raw/*.txt
+HinSAGE/human
+HinSAGE/mouse
+experiment/**/*.csv
+experiment/**/*.txt
+experiment/case_study
+omics/protein/mouse/filtered_exp.csv
+omics/protein/human/*.txt

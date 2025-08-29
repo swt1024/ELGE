@@ -1,0 +1,182 @@
+raw,std
+293FT,293FT
+293T,HEK293T
+293 T,HEK293T
+5-8 F,5-8F
+786O,786-O
+A375 cells,A375
+A498 cells,A498
+A549 cells,A549
+AsPC-1,AsPC-1
+B cells,B
+BEAS2B,BEAS-2B
+BEL‐7404,BEL-7404
+BGC823,BGC-823
+BV2 cell,BV2
+Beas‐2B,Beas-2B
+Bel-7402 HCC cells,Bel-7402 HCC
+Breast cancer cells,breast cancer cells
+Breast cancer tissues,breast cancer cells
+BxPC-3,BXPC-3
+BxPC3,BXPC-3
+C4–2B,C4-2B
+CAL27,CAL-27
+CD4+ T cells,CD4+ T
+CRC cell lines,CRC cells
+CRC,CRC cells
+Caov-3,CaOV3
+Cardiomyocytes,Cardiomyocyte
+DLD1,DLD-1
+DLD‐1,DLD-1
+ESCC,ESCC cells
+Flp-In 293,Flp-In-293
+Flp-In T-REx 293,HEK293 Flp-In T-REx
+GC,GC cell lines
+H1ES,H1
+H1299 cells,H1299
+H1650 cells,H1650
+H9ES,H9
+H9C2 cells,H9C2
+H9c2,H9C2
+HA5‐early,HA5-early
+HCC cell lines,HCC cells
+HCC,HCC cells
+HCT-116 p53−/−,HCT-116 p53-/-
+HCT116 cells,HCT116
+HCT116 p53++,HCT116 p53++
+HCT116 p53-/-,HCT116 p53-/-
+HEC-1-B,HEC-1B
+HEK 293T,HEK293T
+HEK 293T cell,HEK293T
+HEK 293T/17,HEK293T/17
+HEK-293T,HEK293T
+HEK293,HEK293
+HEK293 Flip-In T-Rex,HEK293 Flp-In T-REx
+HEK293 Trex,HEK293T-REx
+HEK293E,HEK293E
+HEK293FT,HEK293FT
+HEK293T cells,HEK293T
+HEK293 T,HEK293T
+HEK293 T,HEK293T
+HGC-27 cells,HGC-27
+HGC827,HGC827
+HL-7702,HL-7702
+HT22,HT-22
+HT29,HT-29
+HTR-8/SVneoc,HTR-8/SVneo
+Hela,HeLa
+Hela cells,HeLa
+Hep3B,Hep-3B
+Hep3B cell lines,Hep3B
+HepG2 cells,HepG2
+Hepa1c1c7,Hepa-1c1c7
+Hs 683,Hs683
+Ht-UtLM,Ht-UtLM
+HuCCT1,HuCCT1
+HuH-7,Huh-7
+Huh7,Huh-7
+Human ESCC cell lines,ESCC cells
+Human Erythroleukemia Cell Line (HEL),HEL
+Human LAD cell line PC9,PC9
+Human NSCLC cell lines,NSCLC
+Human bronchial epithelial cell line (HBE),HBE
+Human lung cancer A549,A549
+Human umbilical vein endothelial cells (HUVECs),HUVECs
+HUVEC,HUVECs
+IOSE386,IOSE-386
+Ishikawa cells,Ishikawa
+JAR cells,JAR
+Jurkat cells,Jurkat
+K-562,K562
+KG1,KG-1
+KYSE140 cells,KYSE140
+Kyse150,KYSE150
+L02,L-02
+LNCaP cells,LNCaP
+LS174T,LS-174T
+LOVO,LoVo
+MCF7,MCF-7
+MDA-LM2,MDA-MB-231-LM2
+MDA-MB-231 cells,MDA-MB-231
+MDA-MB-231-LM2,MDA-MB-231-LM2
+MDA_MB_231,MDA-MB-231
+MGC803,MGC-803
+MHCC97H,MHCC-97H
+MHCC97L,MHCC-97L
+MIA PaCa-2,MIA-PaCa-2
+MIAPACA-2,MIA-PaCa-2
+MKN28,MKN-28
+MKN45,MKN-45
+MUM‐2B,MUM-2B
+MV4-11,MV-4-11
+Molm13,Molm-13
+NB4 cells,NB4
+NCI-H1299,H1299
+NCI-H1437,H1437
+NCI-H1573,H1573
+NCI-H1650,H1650
+NCI-H358,H358
+NCI-H929,H929
+NCI-N87,N87
+NHAs,NHA
+NSCLC cells,NSCLC
+NSCLC specimens,NSCLC
+NSCLC tissues,NSCLC
+Normal liver cell line,liver
+OCM‐1,OCM-1
+OS‐9901,OS-9901
+PC-9,PC9
+PC12 cells,PC12
+PC9 cell lines,PC9
+PLC/PRF/5 cells,PLC/PRF/5
+PTC cell lines,PTC
+PTC tissues,PTC
+RBE cells,RBE
+SHG44,SHG-44
+SK-HEP-1,SK-Hep-1
+SK-Hep1,SK-Hep-1
+SK-hep1,SK-Hep-1
+SKOV3,SKOV-3
+SMMC7721,SMMC-7721
+SMMCC-7721,SMMC-7721
+SMMC‐7721,SMMC-7721
+SPC-A1,SPC-A-1
+SPCA1,SPC-A-1
+SPC‐A1,SPC-A-1
+SUNE1,SUNE-1
+SW-480,SW480
+SW-620,SW620
+SW620 cell lines,SW620
+Saos2,Saos-2
+Siha,SiHa
+T-REx-293T,HEK293T-REx
+THP1,THP-1
+TPC-1 cells,TPC-1
+TPC1,TPC-1
+The ESCC cell lines,ESCC cells
+The HEK293T,HEK293T
+U-2OS cells,U-2 OS
+U‐2OS,U-2 OS
+U2-OS,U-2 OS
+U2OS,U-2 OS
+U251 cells,U251
+U87-MG,U-87 MG
+U87/MG,U-87 MG
+U87MG,U-87 MG
+UMUC3,UM-UC-3
+Vascular smooth muscle cells (VSMCs),VSMCs
+WI‐38,WI-38
+breast cancer cell lines MDA-MB-231,MDA-MB-231
+breast cancer cells,breast cancer cells
+cervical cancer (CC),CC cell line
+cervical cancer cells,CC cell line
+embryonic kidney cell line HEK-293T,HEK293T
+gastric cancer,GC cell lines
+gastric cancer (GC) cells,GC cell lines
+hepatocellular carcinoma (HCC) cells,HCC cells
+human CRC cell lines,CRC cells
+human gastric cancer (GC) cell lines,GC cell lines
+liver tissues,liver
+papillary thyroid carcinoma (PTC) cells,PTC
+primary  gastric cancer (GC),GC cell lines
+vascular smooth muscle cells (VSMCs),VSMCs
