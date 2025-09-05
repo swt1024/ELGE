@@ -19,8 +19,8 @@ tissue = args.tissue
 
 # File paths
 X_path = f'../../HinSAGE/{species}/lncRNA_embeddings_{tissue}.csv'
-esslnc_path = f'../../data/benchmark/{species}/ess_lpi.csv'
-nonesslnc_path = f'../../data/benchmark/{species}/noness_lpi.csv'
+esslnc_path = f'../../data/benchmark/{species}/ess_lnc.csv'
+nonesslnc_path = f'../../data/benchmark/{species}/noness_lnc.csv'
 
 # Load data
 X = pd.read_csv(X_path, index_col=0, header=None)
@@ -28,8 +28,8 @@ esslnc = pd.read_csv(esslnc_path)
 nonesslnc = pd.read_csv(nonesslnc_path)
 
 # Get the lncRNA IDs for positive and negative samples
-esslnc_id = set(esslnc['lncRNA_ID'])
-nonesslnc_id = set(nonesslnc['lncRNA_ID'])
+esslnc_id = set(esslnc['lncRNA_id'])
+nonesslnc_id = set(nonesslnc['lncRNA_id'])
 
 # Prepare data arrays based on the IDs
 X_positive = X[X.index.isin(esslnc_id)].values

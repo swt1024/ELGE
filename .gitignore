@@ -19,11 +19,13 @@
 *.gaf
 *.bw
 *.rpt
+*.gct
 
 # Ignore the following folders
 PDF/
 .vscode/
 .idea/
+run_in_lyd/
 
 annotate/human/*.csv
 annotate/mouse/*.csv
