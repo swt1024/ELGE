@@ -66,7 +66,7 @@ for x in range(0, 1001):
         C = 10
     else:
         cv = KFold(n_splits=10, shuffle=True, random_state=42)
-        C = 10
+        C = 100
 
     # Initialize lists to store true labels and decision scores for performance evaluation
     all_true_labels = []

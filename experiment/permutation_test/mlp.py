@@ -51,7 +51,7 @@ if not os.path.exists(save_path):
     metrics_df.to_csv(save_path, mode='w', header=True, index=False)
 
 # Loop through shuffled datasets (1 to 1000)
-for x in range(1, 1001):
+for x in range(0, 1001):
     shuffle_file = f"shuffled_{x}.csv"
     
     # Load the shuffled dataset and check if it has been processed before
@@ -63,10 +63,10 @@ for x in range(1, 1001):
     # Initialize KFold and LeaveOneOut
     if species == 'mouse':
         cv = LeaveOneOut()
-        layer_size = (32,32) 
+        layer_size = (32, 16) 
     else:
         cv = KFold(n_splits=10, shuffle=True, random_state=42)
-        layer_size = (64, 64)
+        layer_size = (64, 32)
 
     # Initialize lists to store true labels and scores for performance evaluation
     all_true_labels = []

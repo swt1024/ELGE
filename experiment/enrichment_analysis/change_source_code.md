@@ -1,0 +1,4 @@
+-修改def gseaplot的参数nes为es
+-修改GSEAPlot类的参数nes-es，255行
+-修改309行，NES-ES；nes-es
+-注释掉plot.py 485,486,310,311行

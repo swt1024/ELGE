@@ -116,7 +116,7 @@ feature_config = {
         'lncRNA': ['CpG_count','CpG_islands','GC_content (%)','Length'],     
 		'protein': None,     
     },
-    '+seq': {
+    '+con': {
         'lncRNA': ['CpG_count','CpG_islands','GC_content (%)','Length',
                    'phyloP_mean_score','phyloP_max_score','phastCons_mean_score','phastCons_max_score'], 
 		'protein': None,               
@@ -137,11 +137,11 @@ species = 'human'
 tissue = 'heart'
 
 if species == 'human':
-	samples_num = [20,15]
+	samples_num = [20,25]
 	layer_sizes = [64,256]	
 else:
 	samples_num = [10,15]
-	layer_sizes = [64,64]
+	layer_sizes = [32,64]
 
 
 # Load original annotation tables
@@ -149,8 +149,8 @@ proteins = pd.read_csv(f"../Annotate/{species}/transformed_protein_annotation.cs
 lncRNAs = pd.read_csv(f"../Annotate/{species}/valid_{tissue}_annotation.csv")
 LPPI = pd.read_csv(f'../Annotate/{species}/weighted_valid_inter.csv')
 
-proteins.set_index('protein_ID', inplace=True)
-lncRNAs.set_index('lncRNA_ID', inplace=True)
+proteins.set_index('protein_id', inplace=True)
+lncRNAs.set_index('lncRNA_id', inplace=True)
 
 for ablation_name, config in feature_config.items():
 	# ---- Prepare lncRNA node features ----
@@ -202,4 +202,3 @@ for ablation_name, config in feature_config.items():
 	embedding_df = pd.DataFrame(node_embedding, index=LPPI_graph.nodes(node_type='lncRNA'))
 	embedding_df.to_csv(emb_save_path, header=None)
 	print(f"Saved embeddings to: {emb_save_path}")
-

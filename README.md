@@ -176,8 +176,8 @@ Users can run `./HinSAGE/train.py` to generate the node representation for lncRN
 
 | dataset | The number of sampled neighboring nodes | The dimensions of the hidden layers |
 | ------- | :-------------------------------------: | :---------------------------------: |
-| Human   |                 (20,15)                 |              (64,256)               |
-| Mouse   |                 (10,15)                 |              (64,64)                |
+| Human   |                 (20,25)                 |              (64,256)               |
+| Mouse   |                 (10,15)                 |              (32, 64)               |
 
 **Note:**  
 Users can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
@@ -200,10 +200,10 @@ To generate the negative sample set for mouse, run the scripts in the `process/b
 
 #### SVM model
 
-| dataset |  C  | kernel function |
-| :-----: | :-: | :-------------: |
-|  Human  | 10  |     linear      |
-|  Mouse  | 10  |     linear      |
+| dataset |   C   | kernel function |
+| :-----: |  :-:  | :-------------: |
+|  Human  |  100  |     linear      |
+|  Mouse  |  10   |     linear      |
 
 The table above shows the parameters used by the SVM model under different datasets.
 For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart`, and get  accuracy, precision and other 's performance indicators.

@@ -6,20 +6,20 @@ from sklearn.metrics import (
 
 # === Step 1: read data ===
 
-gic_file = '../../results/mouse/mouse_GIC_score.csv'
-essential_file = '../../data/benchMarking/mouse/ess_lpi.csv'
-nonessential_file = '../../data/benchMarking/mouse/noness_lpi.csv'
+gic_file = '../../results/human/human_GIC_score.csv'
+essential_file = '../../data/benchmark/human/ess_lnc.csv'
+nonessential_file = '../../data/benchmark/human/noness_lnc.csv'
 
 gic_df = pd.read_csv(gic_file)
 ess_ids = pd.read_csv(essential_file, header=None)[0].tolist()
 noness_ids = pd.read_csv(nonessential_file, header=None)[0].tolist()
 
 # retain only essential and non-essential lncRNAs
-gic_df = gic_df[gic_df['lncRNA_ID'].isin(ess_ids + noness_ids)]
+gic_df = gic_df[gic_df['lncRNA_id'].isin(ess_ids + noness_ids)]
 
 # label the data
 # 1: essential, 0: non-essential
-gic_df['Label'] = gic_df['lncRNA_ID'].apply(lambda x: 1 if x in ess_ids else (0 if x in noness_ids else np.nan))
+gic_df['Label'] = gic_df['lncRNA_id'].apply(lambda x: 1 if x in ess_ids else (0 if x in noness_ids else np.nan))
 gic_df.dropna(inplace=True)
 
 y_true = gic_df['Label'].astype(int).values
@@ -35,12 +35,12 @@ def compute_metrics(y_true, y_pred):
     f1 = f1_score(y_true, y_pred)
     mcc = matthews_corrcoef(y_true, y_pred)
     return {
-        'Sensitivity': sen,
-        'Specificity': spe,
-        'PPV': ppv,
-        'Accuracy': acc,
-        'F1': f1,
-        'MCC': mcc
+        'Sensitivity': f"{sen:.4f}",
+        'Specificity': f"{spe:.4f}",
+        'PPV': f"{ppv:.4f}",
+        'Accuracy': f"{acc:.4f}",
+        'F1': f"{f1:.4f}",
+        'MCC': f"{mcc:.4f}"
     }
 
 # === Step 3: Use 0.5 as threshold ===
