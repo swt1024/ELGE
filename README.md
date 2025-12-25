@@ -158,7 +158,7 @@ python train.py --layer_sizes 64 256 \
 	--samples_num 20 25 \
 	--lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" \
 	--protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" \
-	--lppi_file "../annotate/human/weighted_valid_inter_heart.csv" \
+	--lppi_file "../annotate/human/weighted_valid_inter.csv" \
 	--embedding_save_path "./human/lncRNA_embeddings_heart.csv"
 ```
 |                        |                                |
