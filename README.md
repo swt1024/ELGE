@@ -147,7 +147,7 @@ pip install -r requirements.txt
 
 ### 4. Heterogeneous representation learning
 
-You can train the model and evaluate it on test cell types using the provided shell script:
+You can train the model using the provided shell script:
 ```
 python train.py --layer_sizes 64 256 \
 	--samples_num 20 25 \
@@ -156,14 +156,15 @@ python train.py --layer_sizes 64 256 \
 	--lppi_file "../annotate/human/weighted_valid_inter_heart.csv" \
 	--embedding_save_path "./human/lncRNA_embeddings_heart.csv"
 ```
-|---|---|
-|**Parameter**|**Description**|
-|`--layer_sizes`|Layer sizes for the model.|
-|`--samples_num`|Number of samples per layer.|
-|`--lncRNA_nodes_file`|Path to the lncRNA nodes file.|
-|`--protein_nodes_file`|Path to the protein nodes file.|
-|`--lppi_file`|Path to the LPPI file.|
-|`--embedding_save_path`|Path to save the embedding file.|
+|                        |                                |
+|------------------------|--------------------------------|
+|     **Parameter**      |         **Description**        |
+|    `--layer_sizes`     |   Layer sizes for the model.   |
+|    `--samples_num`     |  Number of samples per layer.  |
+|  `--lncRNA_nodes_file` | Path to the lncRNA nodes file. |
+| `--protein_nodes_file` |Path to the protein nodes file. |
+|    `--lppi_file`       |    Path to the LPPI file.      |
+|`--embedding_save_path` |Path to save the embedding file.|
 
 If you want to train on their own dataset, you need to provide the following files:
 
