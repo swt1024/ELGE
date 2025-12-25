@@ -98,9 +98,9 @@ samples_num_2=[10,15,20,25]
 
 
 # Tuning hyperparameters
-proteins = pd.read_csv(f"../Annotate/human/transformed_protein_annotation.csv")
-lncRNAs = pd.read_csv(f"../Annotate/human/valid_heart_annotation.csv")
-LPPI = pd.read_csv(f'../Annotate/human/weighted_valid_inter.csv')
+proteins = pd.read_csv(f"../annotate/human/transformed_protein_annotation.csv")
+lncRNAs = pd.read_csv(f"../annotate/human/valid_heart_annotation.csv")
+LPPI = pd.read_csv(f'../annotate/human/weighted_valid_inter.csv')
 
 proteins.set_index(proteins['protein_ID'], inplace=True)
 proteins = proteins.drop('protein_ID', axis=1)

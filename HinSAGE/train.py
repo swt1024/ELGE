@@ -1,3 +1,4 @@
+import argparse
 from stellargraph.mapper import CorruptedGenerator, HinSAGENodeGenerator
 from sklearn.preprocessing import StandardScaler
 from stellargraph import StellarGraph
@@ -24,14 +25,11 @@ os.environ['PYTHONHASHSEED'] = str(SEED)
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
 tf.config.experimental.enable_op_determinism()
 
-
-def run_deep_graph_infomax(base_model, generator, epochs, model_save_path):
+def run_deep_graph_infomax(base_model, generator, epochs, model_save_path, LPPI_graph, lncRNA_nodes):
     """
     Run Deep Graph Infomax using a given base model and generator.
     Save the trained embedding model for future explanation.
     """
-    lncRNA_nodes = LPPI_graph.nodes(node_type='lncRNA')
-
     # Corrupted generator for DGI
     corrupted_generator = CorruptedGenerator(generator)
     lncRNA_gen = corrupted_generator.flow(lncRNA_nodes, shuffle=True, seed=SEED)
@@ -98,27 +96,45 @@ def run_deterministic_hinsage(LPPI_graph, layer_sizes, num_samples, epochs, mode
         activations=["LeakyReLU", "linear"],
         generator=generator
     )
-    return run_deep_graph_infomax(model, generator, epochs=epochs, model_save_path=model_save_path)
+    return run_deep_graph_infomax(model, generator, epochs=epochs, model_save_path=model_save_path, LPPI_graph=LPPI_graph, lncRNA_nodes=LPPI_graph.nodes(node_type='lncRNA'))
 
 
-# Main loop for each tissue
-human_tissue = ['heart', 'lung', 'stomach']
-mouse_tissue = ['heart', 'lung', 'brain']
-species = 'human'
+def parse_args():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(description="Run Deep Graph Infomax with HinSAGE")
+    
+    parser.add_argument('--layer_sizes', type=int, required=True, nargs='+', default=[64, 256], help="Layer sizes for the model")
+    parser.add_argument('--samples_num', type=int, required=True, nargs='+', default=[20, 25], help="Number of samples per layer")
+    parser.add_argument('--lncRNA_nodes_file', type=str, required=True, help="Path to the lncRNA nodes file")
+    parser.add_argument('--protein_nodes_file', type=str, required=True, help="Path to the protein nodes file")
+    parser.add_argument('--lppi_file', type=str, required=True, help="Path to the LPPI file")
+    parser.add_argument('--embedding_save_path', type=str, required=True, help="Path to save the embedding file")
+    return parser.parse_args()
 
-for tissue in human_tissue:
-    print(f"\nProcessing tissue: {tissue}")
+
+def main():
+    # Parse command-line arguments
+    args = parse_args()
+
+    # Choose species and tissue-specific settings
+    layer_size = args.layer_sizes
+    samples_num = args.samples_num
+    lncRNA_nodes_file = args.lncRNA_nodes_file
+    protein_nodes_file = args.protein_nodes_file
+    lppi_file = args.lppi_file
+    embedding_save_path = args.embedding_save_path
+
 
     # Load data
-    proteins = pd.read_csv(f"../Annotate/{species}/transformed_protein_annotation.csv")
-    lncRNAs = pd.read_csv(f"../Annotate/{species}/valid_{tissue}_annotation.csv")
-    LPPI = pd.read_csv(f'../Annotate/{species}/weighted_valid_inter.csv')
+    proteins = pd.read_csv(protein_nodes_file)
+    lncRNAs = pd.read_csv(lncRNA_nodes_file)
+    LPPI = pd.read_csv(lppi_file)
 
     # Preprocess feature data
-    proteins.set_index(proteins['protein_ID'], inplace=True)
-    proteins = proteins.drop('protein_ID', axis=1)
-    lncRNAs.set_index(lncRNAs['lncRNA_ID'], inplace=True)
-    lncRNAs = lncRNAs.drop('lncRNA_ID', axis=1)
+    proteins.set_index(proteins['protein_id'], inplace=True)
+    proteins = proteins.drop('protein_id', axis=1)
+    lncRNAs.set_index(lncRNAs['lncRNA_id'], inplace=True)
+    lncRNAs = lncRNAs.drop('lncRNA_id', axis=1)
 
     # Scale lncRNA features
     scaler_lncRNAs = StandardScaler()
@@ -127,23 +143,21 @@ for tissue in human_tissue:
     # Build heterogeneous graph
     LPPI_graph = StellarGraph(
         {"lncRNA": pd.DataFrame(lncRNAs_scaled, index=lncRNAs.index),
-         "protein": pd.DataFrame(proteins, index=proteins.index)},
+            "protein": pd.DataFrame(proteins, index=proteins.index)},
         LPPI
     )
     print(LPPI_graph.info())
 
     # Output paths
-    tissue_tag = f"{species}_{tissue}"
-    emb_save_path = f"./{species}/lncRNA_embeddings_{tissue}.csv"
-    model_save_path = f"./{species}/trained_hinsage_model_{tissue}.h5"
+    emb_save_path = embedding_save_path
 
     # Train and save embedding model
     node_embedding = run_deterministic_hinsage(
         LPPI_graph,
-        layer_sizes=[64, 256],
-        num_samples=[20, 15],
+        layer_sizes=layer_size,
+        num_samples=samples_num,
         epochs=1000,
-        model_save_path=model_save_path,
+        model_save_path=f"{embedding_save_path}/trained_hinsage_model_{tissue}.h5",
         seed=42
     )
 
@@ -151,3 +165,7 @@ for tissue in human_tissue:
     embedding_df = pd.DataFrame(node_embedding, index=LPPI_graph.nodes(node_type='lncRNA'))
     embedding_df.to_csv(emb_save_path, header=None)
     print(f"Saved embeddings to: {emb_save_path}")
+
+
+if __name__ == "__main__":
+    main()

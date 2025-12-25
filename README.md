@@ -10,7 +10,6 @@ In this work, we proposed a framework to identify essential lncRNAs by taking ad
 ELGP/
 ├── data/   
 │   ├── raw/                    # Data before preprocess
-│   ├── preprocess/             # Preprocessing script
 │   ├── benchmark/              # Human and mouse benchmark datasets
 │   ├── LPI/                    # Human and mouse LPI networks
 │   ├── PPI/                    # Human and mouse PPI networks
@@ -18,13 +17,11 @@ ELGP/
 ├── reference_lncRNA/ 
 │   ├── human/                  # Reference data for human lncRNA genes
 │   ├── mouse/                  # Reference data for mouse lncRNA genes
-│   └── reference_genome/       # Reference genome sequence for human and 
+│   ├── reference_genome/       # Reference genome sequence for human and mouse
+│   └── preprocess/             # Scripts for process 
 ├── process/                    # Data preprocessing scripts
-│   ├── benchMarking_human/     # Building the human benchmark dataset
-│   ├── benchMarking_mouse/     # Building the mouse benchmark dataset
-│   ├── LPI_human/              # Constructing the human LPI network
-│   ├── LPI_mouse/              # Constructing the mouse LPI network
-│   └── LPPI/                   # Constructing the LPPI network
+│   ├── bencmark/               # Building the benchmark dataset
+│   └── construct_lppi/         # Constructing the LPPI network
 ├── omics/                      # Omics data for node annotation
 │   ├── conservation/           # Evolutionary conservation data
 │   ├── ENCODE_annotation/      # Epigenomic feature data from ENCODE
@@ -47,11 +44,12 @@ ELGP/
 git clone https://github.com/swt1024/ELGP.git
 
 # Create and activate conda environment (recommended)
-conda create -n ELGP python==3.7
+conda create -n ELGP python==3.8
 conda activate ELGP
 
 # Install dependencies
 conda install -c bioconda bedtools
+conda install -c stellargraph stellargraph
 pip install -r requirements.txt
 ```
 ---
@@ -73,27 +71,27 @@ pip install -r requirements.txt
 	- `NONCODEv5_mouse_mm10_lncRNA.gtf` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mouse_mm10_lncRNA.gtf.gz)  
 	- `ensembl/`: Contains multiple GTF files from Ensembl (v84–v100). Example (Release 100): [Mus_musculus.GRCm38.100.gtf.gz](https://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
-	`reference_lncRNA/mouse/bed:
+	`reference_lncRNA/mouse/bed`:
 	- `NONCODEv6_mm10.lncAndGene.bed` – [Download](http://www.noncode.org/datadownload/NONCODEv6_mm10.lncAndGene.bed.gz)  
 	- `NONCODEv5_mm10.lncAndGene.bed` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mm10.lncAndGene.bed.gz)
 	
-	`human/fasta`
+	`reference_lncRNA/human/fasta`
 	- `NONCODEv6_human.fa` – [Download](http://www.noncode.org/datadownload/NONCODEv6_human.fa.gz)
 	- `NONCODEv5_human.fa` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_human.fa.gz)
 	- `ensembl/`: Contains human lncRNA FASTA files (ncrna.fa). Multiple Ensembl releases are required, including: `v76`, `v78`, `v80`, `v84`, `v87`, `v93`, `v97`, `v104`, `v106`, `v107`, `v108`, `v109`, `v110`, `v111`, `v112`, `v113`. Example (Release 113): [Homo_sapiens.GRCh38.ncrna.fa.gz](https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
-	`mouse/fasta`
+	`reference_lncRNA/mouse/fasta`
 	- `NONCODEv5_mouse.fa` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mouse.fa.gz)
 	- `NONCODEv6_mouse.fa` – [Download](http://www.noncode.org/datadownload/NONCODEv6_mouse.fa.gz)
 	- `ensembl/`: Contains mouse lncRNA FASTA files (ncrna.fa) from Ensembl v84–v100 . Example (Release 100): [Mus_musculus.GRCm38..ncrna.fa.gz](https://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/ncrna/Mus_musculus.GRCm38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
 	`reference_lncRNA/reference_genome`
 	- `GRCh38.p14.genome.fa`  – [Download](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.p14.genome.fa.gz)
-	- `GRCm38.p6.genome.fa`    – [Download](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.p6.genome.fa.gz)
+	- `GRCm38.p6.genome.fa`   – [Download](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.p6.genome.fa.gz)
 
 2. Run the following command line instructions for preprocessing in the `reference_lncRNA/preprocess/` directory:
 	```
-	# Generate BED files from LncBook GTF files and preprocess NONCODE BED files
+	# Preprocess NONCODE BED files
 	./pro_bed.sh
 	
 	# Convert Ensembl GTF files into BED files
@@ -112,57 +110,34 @@ pip install -r requirements.txt
 	python process_fasta.py ../mouse/fasta ../mouse/fasta
 	python process_fasta.py ../mouse/fasta/ensembl ../mouse/fasta/processed_ensembl
 	```
-#### Step2: Download and preprocess LPI, PPI, and essential lncRNA data.
+#### Step2: Download LPI, PPI, and essential lncRNA data.
 1. Download the following data to `data/raw`:
-	- `esslnc.csv`: Essential lncRNA gene data from the dbEssLnc2.0 database.
-	- `lncRNA_interaction.txt`: Raw LPI data from the NPInter v5.0 database.  
+	- `esslnc.csv`: Essential lncRNA gene data from the dbEssLnc2.0 database. -[Download](https://esslnc.pufengdu.org/v2/data/esslnc.xlsx)
+	- `lncRNA_interaction.txt`: Raw LPI data from the NPInter v5.0 database.  -[Download](http://bigdata.ibp.ac.cn/npinter5/download/file/lncRNA_interaction.txt.gz)
 	  [Download](http://bigdata.ibp.ac.cn/npinter5/download/file/lncRNA_interaction.txt.gz)
 	- `BIOGRID-Homo_sapiens-4.4.248.tab3.txt`: PPI data from the BIOGRID database. 
 	  [Download shared ZIP](https://downloads.thebiogrid.org/File/BioGRID/Release-Archive/BIOGRID-4.4.248/BIOGRID-ORGANISM-4.4.248.tab3.zip)
 	- `BIOGRID-Mus_musculus-4.4.248.tab3.txt`: PPI data from the BIOGRID database.  
 	  [Download shared ZIP](https://downloads.thebiogrid.org/File/BioGRID/Release-Archive/BIOGRID-4.4.248/BIOGRID-ORGANISM-4.4.248.tab3.zip)
 
-2. Run `data/preprocess/pro_ess.py` to obtain lncRNA gene essentiality data, outputting `data/benchmark/human/human_esslnc.csv` and `data/benchmark/mouse/mouse_esslnc.csv`.
-3. Run `data/preprocess/pro_NPInter.sh` to filter `data/raw/lncRNA_interaction.txt`, outputting `data/LPI/human/NPInter_LPI.csv` and `data/LPI/mouse/NPInter_LPI.csv`.
-4. Run the `correct_human_npinter.py` script to correct the raw human NPInter interaction data. The script uses the following files: 
-	- `ProteinNameCorrections.csv`: Contains erroneous protein names and their corresponding valid names. 
-	- `Cell_TissueCorrections.csv`: Contains invalid tissue or cell line names along with their valid counterparts.；
-5. Run the `correct_mouse_npinter.py` script to correct the raw mouse NPInter interaction data.
-
 #### Step3: Download and preprocess the data used for annotating nodes.
 1. Run the `omics/conservation/download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
 2. Run the `omics/ENCODE_annotation/download.py` script to download epigenomic peak data in BigBed format from ENCODE for various tissues.  Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
-3. Run the `omics/protein/human/download.sh` script to download and decompress the pLI score data from gnomAD.
-4. Run the `omics/protein/mouse/download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
+3. Run the `omics/protein/mouse/download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
 	- `MGI_filter_conditions.csv`: Contains file names and the corresponding filter conditions for each dataset.
-5. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
-6. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
+4. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
+5. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
+6. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which data related to the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
+7. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
 
 ### 2. Construct lncRNA-protein-protein heterogeneous network
 
-#### Step1: Construct lncRNA-protein interactions network
-**human**
-To merge interaction data from the NPInter and LncBook databases:
-1. Run the `process/LPI_human/getCoordination.py` script to extract coordinate ranges of lncRNA genes using BED files, outputting - `npinter_lnc_0based.bed` and `lncbook_lnc_0based.bed`. Genes without coordinate information are recorded in `lnc_no_pos.csv`.
-2. Run `match_lncRNA.sh` using bedtools to find lncRNA genes with exactly overlapping coordinates, outputting `mapped_lncRNA.txt`.
-3. Run `merge_all.py` to merge the interaction data from NPInter and LncBook, output `data/LPI/human/LPI.csv`, `data/LPI/human/lncRNA.csv` and `data/LPI/human/protein.csv`
+1. Run `process/construct_lppi/get_lpi.py` to preprocess the NPInter LPI data and construct a weighted LPI network..
+2. Run `process/construct_lppi/get_lppi.py` to filter the BioGRID PPI data and generate the LPPI network.
 
-**mouse**
- 1. Run `process/LPI_mouse/getLPI.py` to comstruct LPI network，output `data/LPI/mouse/LPI.csv`, and `data/LPI/mouse/protein.csv`。Genes without coordinate information are recorded in `lnc_no_pos.csv`.
-
-#### Step2: Construct lncRNA-protein-protein interactions network
-**human**
- 1. Run `process/LPPI_human/getPPI.py` to filter PPI data，output `data/PPI/human/PPI.csv`, and `data/PPI/human/protein_in_ppi.csv`。
- 2. Run `process/LPPI_human/getLPPI.py` to construct LPPI network，output `data/LPPI/human/LPPI.csv`, and `data/LPPI/human/protein.csv`。
-
-**mouse**
-1. Run `process/LPPI_mouse/getPPI.py` to filter PPI data，output `data/PPI/mouse/PPI.csv` and `data/PPI/mouse/protein_in_ppi.csv`。
-2. Run `process/LPPI_mouse/getLPPI.py` to construct LPPI network，output `data/LPPI/mouse/LPPI.csv` and `data/LPPI/mouse/protein.csv`。
-3. Run the `correct_protein.py` script to correct the protein name, output `data/LPPI/mouse/LPPI_updated.csv` and `data/LPPI/mouse/protein_updated.csv`. The script uses the following files: 
-	- `right_protein.csv`: Contains erroneous protein names and their corresponding valid names. 
 ### 3. Node feature annotation for the LPPI network
 
- **human**
+**human**
 1. Run the `annotate/human/lncRNA_feature_annotate.ipynb` notebook to annotate features for all lncRNA nodes in the human LPPI network.
 2. Run the `annotate/human/protein_feature_annotate.ipynb` notebook to annotate features for all protein nodes in the human LPPI network.
 
@@ -172,7 +147,34 @@ To merge interaction data from the NPInter and LncBook databases:
 
 ### 4. Heterogeneous representation learning
 
-Users can run `./HinSAGE/train.py` to generate the node representation for lncRNA gene nodes , e.g. `HinASGE/human/lncRNA_embeddings_heart.csv`.  The following are the optimal parameters used on the datasets in this study:
+You can train the model and evaluate it on test cell types using the provided shell script:
+```
+python train.py --layer_sizes 64 256 \
+	--samples_num 20 25 \
+	--lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" \
+	--protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" \
+	--lppi_file "../annotate/human/weighted_valid_inter_heart.csv" \
+	--embedding_save_path "./human/lncRNA_embeddings_heart.csv"
+```
+|---|---|
+|**Parameter**|**Description**|
+|`--layer_sizes`|Layer sizes for the model.|
+|`--samples_num`|Number of samples per layer.|
+|`--lncRNA_nodes_file`|Path to the lncRNA nodes file.|
+|`--protein_nodes_file`|Path to the protein nodes file.|
+|`--lppi_file`|Path to the LPPI file.|
+|`--embedding_save_path`|Path to save the embedding file.|
+
+If you want to train on their own dataset, you need to provide the following files:
+
+1. Nodes File (--lncRNA_nodes_file and --protein_nodes_file):
+- CSV files containing features for lncRNAs and proteins.
+- Must include a lncRNA_id column (for lncRNAs) and a protein_id column (for proteins).
+2. LPPI File (--lppi_file):
+- A CSV file that defines interactions between lncRNAs and proteins.
+- Must include lncRNA_id and protein_id columns.
+
+The following are the optimal parameters used on the datasets in this study:
 
 | dataset | The number of sampled neighboring nodes | The dimensions of the hidden layers |
 | ------- | :-------------------------------------: | :---------------------------------: |
@@ -182,20 +184,12 @@ Users can run `./HinSAGE/train.py` to generate the node representation for lncRN
 **Note:**  
 Users can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
 They can then use the first two code cells in `classifier/SVM/svm.ipynb` to evaluate the model's performance under different parameter settings.
+
 ### 5. Construct benchmark dataset
-#### Step1: Construct essential lncRNA gene dataset
-Run`./process/benchamrk_human/get_ess.py` and `./process/benchamrk_mouse/get_ess.py`to construct essential lncRNA gene dataset for human and mouse. 
+1. Run `process/benchmark/get_trans.ipynb` to obtain transcript information for each lncRNA gene and filter out transcripts longer than 20,000 nt.
+2. In the `process/benchmark` folder, run `./cal_MFE.sh ./human/transcript_sequences.fasta ./human/trans_MFE.csv` and `./cal_MFE.sh ./mouse/transcript_sequences.fasta ./mouse/trans_MFE.csv` to compute the MFE for each transcript.
+3. Run construct_benchmark.ipynb to calculate the GIC score and obtain the positive and negative samples.
 
-#### Step2: Construct non-essential lncRNA gene dataset
-**human**
-1. Run the `./process/benchmark_human/get_trans.py` script to use the previously generated gene–transcript mappings and extract the transcript information for each lncRNA gene, output `lnc_trans.txt`.
-2. Run the `./process/benchmark_human/get_seq.py` script to create a FASTA file containing the transcript sequences: `transcript_sequences.fasta`.  Additionally, it filters out transcripts longer than 20,000 nucleotides and updates the gene–transcript mapping, output `filtered_lnc_trans.txt`.
-3. Run the `./process/benchmark_human/cal_MFE.sh` script, using `transcript_sequences.fasta` as input, to compute the minimum free energy (MFE) of each transcript, output `./process/benchmark_human/trans_MFE.csv`.
-4. Run the `./process/benchmark_human/cal_GIC.py` script to calculate GIC scores based on `transcript_sequences.fasta` and `trans_MFE.csv`, then sort the results in ascending order, output `./process/benchmark_human/sorted_GIC.csv`.
-5. Run the `./process/benchmark_human/get_noness.py` script to select negative samples from the top of the sorted GIC score list, output `data/benchmark/human/noness_lpi.csv`.
-
-**mouse**
-To generate the negative sample set for mouse, run the scripts in the `process/benchmark_mouse` directory in the same order.
 ### 6. Supervised machine learning
 
 #### SVM model
@@ -206,14 +200,15 @@ To generate the negative sample set for mouse, run the scripts in the `process/b
 |  Mouse  |  10   |     linear      |
 
 The table above shows the parameters used by the SVM model under different datasets.
-For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart`, and get  accuracy, precision and other 's performance indicators.
+For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart`, and get accuracy, precision and other performance indicators.
 Users can run the fifth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get predicted results.
+
 #### MLP model
 
 | dataset | The number of neurons in the hidden layer |
 | :-----: | :---------------------------------------: |
-|  Human  |                  (64,64)                  |
-|  Mouse  |                  (32,32)                  |
+|  Human  |                 (128,64)                  |
+|  Mouse  |                 (32, 16)                  |
 
 The table above shows the parameters used by the MLP model under different datasets.
 

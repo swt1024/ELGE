@@ -1,2 +1,0 @@
--修正gene id列(第三列)的NONCODE 为 -
-ncRI-40002050;ncRI-40002051;ncRI-40002248;ncRI-40002296
