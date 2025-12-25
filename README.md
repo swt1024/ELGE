@@ -62,28 +62,29 @@ pip install -r requirements.txt
 	`reference_lncRNA/human/gtf`:
 	- `NONCODEv5_human_hg38_lncRNA.gtf` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_human_hg38_lncRNA.gtf.gz)  
 	- `NONCODEv6_human_hg38_lncRNA.gtf` – [Download](http://www.noncode.org/datadownload/NONCODEv6_human_hg38_lncRNA.gtf.gz)  
-	- `ensembl/`: Contains Ensembl GTF files. Multiple Ensembl releases are required, including: `v76`, `v78`, `v80`, `v84`, `v87`, `v93`, `v97`, `v104`, `v106`, `v107`, `v108`, `v109`, `v110`, `v111`, `v112`, `v113`. Example (Release 113): [Homo_sapiens.GRCh38.113.gtf.gz](https://ftp.ensembl.org/pub/release-113/gtf/homo_sapiens/Homo_sapiens.GRCh38.113.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
+	- `ensembl/`: Run `./download.sh` to download multiple GTF files from Ensembl, including: `v76`, `v78`, `v80`, `v84`, `v87`, `v93`, `v97`, `v104`, `v106`, `v107`, `v108`, `v109`, `v110`, `v111`, `v112`, `v113`. Example (Release 113): [Homo_sapiens.GRCh38.113.gtf.gz](https://ftp.ensembl.org/pub/release-113/gtf/homo_sapiens/Homo_sapiens.GRCh38.113.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/) 
+	
 	`reference_lncRNA/human/bed`:
 	- `NONCODEv6_hg38.lncAndGene.bed` – [Download](http://www.noncode.org/datadownload/NONCODEv6_hg38.lncAndGene.bed.gz)  
 	- `NONCODEv5_hg38.lncAndGene.bed` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_hg38.lncAndGene.bed.gz)
-	
+
+	`reference_lncRNA/human/fasta`
+	- `NONCODEv6_human.fa` – [Download](http://www.noncode.org/datadownload/NONCODEv6_human.fa.gz)
+	- `NONCODEv5_human.fa` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_human.fa.gz)
+	- `ensembl/`: Run `./download.sh` to download multiple FASTA files from Ensembl, including: `v76`, `v78`, `v80`, `v84`, `v87`, `v93`, `v97`, `v104`, `v106`, `v107`, `v108`, `v109`, `v110`, `v111`, `v112`, `v113`. Example (Release 113): [Homo_sapiens.GRCh38.ncrna.fa.gz](https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
+
 	`reference_lncRNA/mouse/gtf`:
 	- `NONCODEv5_mouse_mm10_lncRNA.gtf` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mouse_mm10_lncRNA.gtf.gz)  
-	- `ensembl/`: Contains multiple GTF files from Ensembl (v84–v100). Example (Release 100): [Mus_musculus.GRCm38.100.gtf.gz](https://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
+	- `ensembl/`: Run `./download.sh` to download multiple GTF files from Ensembl, including v84–v100. Example (Release 100): [Mus_musculus.GRCm38.100.gtf.gz](https://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
 	`reference_lncRNA/mouse/bed`:
 	- `NONCODEv6_mm10.lncAndGene.bed` – [Download](http://www.noncode.org/datadownload/NONCODEv6_mm10.lncAndGene.bed.gz)  
 	- `NONCODEv5_mm10.lncAndGene.bed` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mm10.lncAndGene.bed.gz)
 	
-	`reference_lncRNA/human/fasta`
-	- `NONCODEv6_human.fa` – [Download](http://www.noncode.org/datadownload/NONCODEv6_human.fa.gz)
-	- `NONCODEv5_human.fa` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_human.fa.gz)
-	- `ensembl/`: Contains human lncRNA FASTA files (ncrna.fa). Multiple Ensembl releases are required, including: `v76`, `v78`, `v80`, `v84`, `v87`, `v93`, `v97`, `v104`, `v106`, `v107`, `v108`, `v109`, `v110`, `v111`, `v112`, `v113`. Example (Release 113): [Homo_sapiens.GRCh38.ncrna.fa.gz](https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
-	
 	`reference_lncRNA/mouse/fasta`
 	- `NONCODEv5_mouse.fa` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mouse.fa.gz)
 	- `NONCODEv6_mouse.fa` – [Download](http://www.noncode.org/datadownload/NONCODEv6_mouse.fa.gz)
-	- `ensembl/`: Contains mouse lncRNA FASTA files (ncrna.fa) from Ensembl v84–v100 . Example (Release 100): [Mus_musculus.GRCm38..ncrna.fa.gz](https://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/ncrna/Mus_musculus.GRCm38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
+	- `ensembl/`: Run `./download.sh` to download multiple FASTA files from Ensembl, including v84–v100. Example (Release 100): [Mus_musculus.GRCm38..ncrna.fa.gz](https://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/ncrna/Mus_musculus.GRCm38.ncrna.fa.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
 	`reference_lncRNA/reference_genome`
 	- `GRCh38.p14.genome.fa`  – [Download](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.p14.genome.fa.gz)
@@ -121,14 +122,18 @@ pip install -r requirements.txt
 	  [Download shared ZIP](https://downloads.thebiogrid.org/File/BioGRID/Release-Archive/BIOGRID-4.4.248/BIOGRID-ORGANISM-4.4.248.tab3.zip)
 
 #### Step3: Download and preprocess the data used for annotating nodes.
-1. Run the `omics/conservation/download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
-2. Run the `omics/ENCODE_annotation/download.py` script to download epigenomic peak data in BigBed format from ENCODE for various tissues.  Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
-3. Run the `omics/protein/mouse/download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
+`omics/conservation`:
+Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
+`omics/ENCODE_annotation`:
+Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues.  Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
+`omics/protein/mouse`:
+1. Run the `download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
 	- `MGI_filter_conditions.csv`: Contains file names and the corresponding filter conditions for each dataset.
-4. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
-5. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
-6. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which data related to the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
-7. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
+2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
+3. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
+`omics/protein/human`:
+1. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which data related to the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
+2. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
 
 ### 2. Construct lncRNA-protein-protein heterogeneous network
 
@@ -166,7 +171,7 @@ python train.py --layer_sizes 64 256 \
 |    `--lppi_file`       |    Path to the LPPI file.      |
 |`--embedding_save_path` |Path to save the embedding file.|
 
-If you want to train on their own dataset, you need to provide the following files:
+If you want to train the model on your own dataset, you need to provide the following files:
 
 1. Nodes File (--lncRNA_nodes_file and --protein_nodes_file):
 - CSV files containing features for lncRNAs and proteins.
@@ -189,7 +194,7 @@ They can then use the first two code cells in `classifier/SVM/svm.ipynb` to eval
 ### 5. Construct benchmark dataset
 1. Run `process/benchmark/get_trans.ipynb` to obtain transcript information for each lncRNA gene and filter out transcripts longer than 20,000 nt.
 2. In the `process/benchmark` folder, run `./cal_MFE.sh ./human/transcript_sequences.fasta ./human/trans_MFE.csv` and `./cal_MFE.sh ./mouse/transcript_sequences.fasta ./mouse/trans_MFE.csv` to compute the MFE for each transcript.
-3. Run construct_benchmark.ipynb to calculate the GIC score and obtain the positive and negative samples.
+3. Run `construct_benchmark.ipynb` to calculate the GIC score and obtain the positive and negative samples.
 
 ### 6. Supervised machine learning
 
