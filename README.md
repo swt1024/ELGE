@@ -138,7 +138,7 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 
 ### 2. Construct lncRNA-protein-protein heterogeneous network
 
-1. Run `process/construct_lppi/get_lpi.py` to preprocess the NPInter LPI data and construct a weighted LPI network..
+1. Run `process/construct_lppi/get_lpi.py` to preprocess the NPInter LPI data and construct a weighted LPI network.
 2. Run `process/construct_lppi/get_lppi.py` to filter the BioGRID PPI data and generate the LPPI network.
 
 ### 3. Node feature annotation for the LPPI network
@@ -172,6 +172,13 @@ python train.py --layer_sizes 64 256 \
 |    `--lppi_file`       |    Path to the LPPI file.      |
 |`--embedding_save_path` |Path to save the embedding file.|
 
+The following are the optimal parameters used on the datasets in this study:
+
+| dataset | The number of sampled neighboring nodes | The dimensions of the hidden layers |
+| ------- | :-------------------------------------: | :---------------------------------: |
+| Human   |                 (20,25)                 |              (64,256)               |
+| Mouse   |                 (10,15)                 |              (32, 64)               |
+
 If you want to train the model on your own dataset, you need to provide the following files:
 
 1. Nodes File (--lncRNA_nodes_file and --protein_nodes_file):
@@ -181,16 +188,9 @@ If you want to train the model on your own dataset, you need to provide the foll
 - A CSV file that defines interactions between lncRNAs and proteins.
 - Must include lncRNA_id and protein_id columns.
 
-The following are the optimal parameters used on the datasets in this study:
-
-| dataset | The number of sampled neighboring nodes | The dimensions of the hidden layers |
-| ------- | :-------------------------------------: | :---------------------------------: |
-| Human   |                 (20,25)                 |              (64,256)               |
-| Mouse   |                 (10,15)                 |              (32, 64)               |
-
 **Note:**  
-Users can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
-They can then use the first two code cells in `classifier/SVM/svm.ipynb` to evaluate the model's performance under different parameter settings.
+You can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
+You can then use the first two code cells in `classifier/SVM/svm.ipynb` to evaluate the model's performance under different parameter settings.
 
 ### 5. Construct benchmark dataset
 1. Run `process/benchmark/get_trans.ipynb` to obtain transcript information for each lncRNA gene and filter out transcripts longer than 20,000 nt.
@@ -208,7 +208,7 @@ They can then use the first two code cells in `classifier/SVM/svm.ipynb` to eval
 
 The table above shows the parameters used by the SVM model under different datasets.
 For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart`, and get accuracy, precision and other performance indicators.
-Users can run the fifth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get predicted results.
+You can run the fifth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get predicted results.
 
 #### MLP model
 
