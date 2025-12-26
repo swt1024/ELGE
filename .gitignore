@@ -22,10 +22,8 @@
 *.gct
 
 # Ignore the following folders
-PDF/
 .vscode/
 .idea/
-run_in_lyd/
 
 annotate/human/*.csv
 annotate/mouse/*.csv
@@ -37,7 +35,9 @@ HinSAGE/human
 HinSAGE/mouse
 experiment/**/*.csv
 experiment/**/*.txt
-experiment/case_study
+experiment/**/*.md
 omics/protein/mouse/filtered_exp.csv
+omics/protein/human/filtered_exp.csv
 omics/protein/human/*.txt
-experiment/enrichment_analysis/change_source_code.md
+reference_lncRNA/mouse/transcript/
+reference_lncRNA/human/transcript/

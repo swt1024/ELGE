@@ -29,7 +29,7 @@ for TISSUE in $TISSUES; do
       --samples_num $SAMPLES_NUM \
       --lncRNA_nodes_file "../annotate/$SPECIES/valid_${TISSUE}_annotation.csv" \
 	  --protein_nodes_file "../annotate/$SPECIES/transformed_protein_annotation.csv" \
-      --lppi_file "../annotate/$SPECIES/weighted_valid_inter_${TISSUE}.csv" \
+      --lppi_file "../annotate/$SPECIES/weighted_valid_inter.csv" \
       --embedding_save_path "./$SPECIES/unweighted/lncRNA_embeddings_${TISSUE}.csv"
       
     echo "Finished processing tissue: $TISSUE"

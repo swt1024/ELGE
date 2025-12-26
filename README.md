@@ -132,8 +132,9 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
 3. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
 `omics/protein/human`:
-1. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which data related to the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
-2. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
+1. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which contains data of the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
+2. Run the `filter.py` script to filter the expression data files, obtain `filtered_exp.csv`.
+3. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
 
 ### 2. Construct lncRNA-protein-protein heterogeneous network
 
