@@ -124,7 +124,7 @@ pip install -r requirements.txt
 `omics/conservation`:
 Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
 `omics/epigenomic`:
-Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues.  Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
+Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues. Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
 `omics/protein/mouse`:
 1. Run the `download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
 	- `MGI_filter_conditions.csv`: Contains file names and the corresponding filter conditions for each dataset.
