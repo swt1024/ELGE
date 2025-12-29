@@ -25,7 +25,7 @@ os.environ['PYTHONHASHSEED'] = str(SEED)
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
 tf.config.experimental.enable_op_determinism()
 
-def run_deep_graph_infomax(base_model, generator, epochs, model_save_path, LPPI_graph, lncRNA_nodes):
+def run_deep_graph_infomax(base_model, generator, epochs,  LPPI_graph, lncRNA_nodes):
     """
     Run Deep Graph Infomax using a given base model and generator.
     Save the trained embedding model for future explanation.
@@ -63,10 +63,6 @@ def run_deep_graph_infomax(base_model, generator, epochs, model_save_path, LPPI_
     x_emb_in, x_emb_out = base_model.in_out_tensors()
     emb_model = Model(inputs=x_emb_in, outputs=x_emb_out)
 
-    # Save model for future use
-    emb_model.save(model_save_path)
-    print(f"Saved embedding model to: {model_save_path}")
-
     # Generate embeddings
     node_gen = generator.flow(lncRNA_nodes, targets=None, shuffle=False)
     embedding = emb_model.predict(node_gen)
@@ -77,7 +73,7 @@ def run_deep_graph_infomax(base_model, generator, epochs, model_save_path, LPPI_
     return embedding
 
 
-def run_deterministic_hinsage(LPPI_graph, layer_sizes, num_samples, epochs, model_save_path, seed=42):
+def run_deterministic_hinsage(LPPI_graph, layer_sizes, num_samples, epochs, seed=42):
     """
     Wrapper to initialize generator and model and run DGI.
     """
@@ -96,7 +92,7 @@ def run_deterministic_hinsage(LPPI_graph, layer_sizes, num_samples, epochs, mode
         activations=["LeakyReLU", "linear"],
         generator=generator
     )
-    return run_deep_graph_infomax(model, generator, epochs=epochs, model_save_path=model_save_path, LPPI_graph=LPPI_graph, lncRNA_nodes=LPPI_graph.nodes(node_type='lncRNA'))
+    return run_deep_graph_infomax(model, generator, epochs=epochs, LPPI_graph=LPPI_graph, lncRNA_nodes=LPPI_graph.nodes(node_type='lncRNA'))
 
 
 def parse_args():
@@ -157,7 +153,6 @@ def main():
         layer_sizes=layer_size,
         num_samples=samples_num,
         epochs=1000,
-        model_save_path=f"{embedding_save_path}/trained_hinsage_model_{tissue}.h5",
         seed=42
     )
 

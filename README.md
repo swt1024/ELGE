@@ -23,7 +23,7 @@ ELE-main/
 │   └── construct_lppi/         # Constructing the LPPI network
 ├── omics/                      # Omics data for node annotation
 │   ├── conservation/           # Evolutionary conservation data
-│   ├── ENCODE_annotation/      # Epigenomic feature data from ENCODE
+│   ├── epigenomic/             # Epigenomic feature data from ENCODE
 │   └── protein/                # Protein-coding gene related data
 ├── annotate/                   # Scripts for annotating node features
 │   ├── human/                  # Annotate node for human LPPI network
@@ -123,7 +123,7 @@ pip install -r requirements.txt
 #### Step3: Download and preprocess the data used for annotating nodes.
 `omics/conservation`:
 Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
-`omics/ENCODE_annotation`:
+`omics/epigenomic`:
 Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues.  Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
 `omics/protein/mouse`:
 1. Run the `download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
