@@ -36,6 +36,7 @@ data/raw/*.txt
 HinSAGE/human
 HinSAGE/mouse
 experiment/enrichment_analysis
+experiment/ablation_study
 experiment/**/*.csv
 experiment/**/*.txt
 experiment/**/*.md
