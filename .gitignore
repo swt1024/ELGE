@@ -30,7 +30,6 @@ annotate/mouse/*.csv
 classifier/MLP/experiment_details
 classifier/SVM/experiment_details
 classifier/SVM/performance/human/grid_details
-classifier/SVM/performance/human/svm_rbf_HinSAGE_grid_summary.csv
 data/raw/*.csv
 data/raw/*.txt
 HinSAGE/human

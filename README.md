@@ -21,7 +21,7 @@ ELE-main/
 ├── process/                    # Data preprocessing scripts
 │   ├── bencmark/               # Building the benchmark dataset
 │   └── construct_lppi/         # Constructing the LPPI network
-├── omics/                      # Omics data for node annotation
+├── features/                   # Data for node annotation
 │   ├── conservation/           # Evolutionary conservation data
 │   ├── epigenomic/             # Epigenomic feature data from ENCODE
 │   └── protein/                # Protein-coding gene related data
