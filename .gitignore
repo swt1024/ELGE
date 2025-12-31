@@ -40,3 +40,5 @@ reference_lncRNA/mouse/transcript/
 reference_lncRNA/human/transcript/
 results/human
 results/mouse
+process/benchmark/human/
+process/benchmark/mouse/
