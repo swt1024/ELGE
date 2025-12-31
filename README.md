@@ -41,14 +41,16 @@ ELE-main/
 ```
 # Clone the repository
 git clone https://github.com/swt1024/ELE.git
+cd ELE
 
 # Create and activate conda environment (recommended)
 conda create -n ELE python==3.8
 conda activate ELE
 
-# Install dependencies
-conda install -c bioconda bedtools
+# Install dependencies with CUDA 11.2 support
 conda install -c stellargraph stellargraph
+conda install -c bioconda bedtools
+conda install -c conda-forge pybigwig
 pip install -r requirements.txt
 ```
 ---
@@ -154,12 +156,7 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 
 You can train the model using the provided shell script:
 ```
-python train.py --layer_sizes 64 256 \
-	--samples_num 20 25 \
-	--lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" \
-	--protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" \
-	--lppi_file "../annotate/human/valid_inter.csv" \
-	--embedding_save_path "./human/lncRNA_embeddings_heart.csv"
+python train.py --layer_sizes 64 256 --samples_num 20 25 --lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" --protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" --lppi_file "../annotate/human/valid_inter.csv" --embedding_save_path "./human/lncRNA_embeddings_heart.csv"
 ```
 |                        |                                |
 |------------------------|--------------------------------|
