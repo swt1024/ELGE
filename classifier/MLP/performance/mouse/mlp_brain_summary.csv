@@ -1,2 +1,0 @@
-Model,Tissue,Sensitivity(Recall),Specificity,PPV(Precision),F1_Score,Accuracy,MCC,ROC_AUC,PR_AUC
-MLP,brain,0.8864,0.9545,0.9512,0.9176,0.9205,0.8429,0.9824,0.9816
