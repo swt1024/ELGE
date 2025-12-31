@@ -1,2 +1,0 @@
-Model,Tissue,Sensitivity(Recall),Specificity,PPV(Precision),F1_Score,Accuracy,MCC,ROC_AUC,PR_AUC
-SVM,heart,0.9318,0.9545,0.9535,0.9425,0.9432,0.8866,0.9861,0.9855
