@@ -39,4 +39,5 @@ experiment/**/**/*.csv
 features/protein/human/*.txt
 reference_lncRNA/mouse/transcript/
 reference_lncRNA/human/transcript/
-results/
+results/human
+results/mouse
