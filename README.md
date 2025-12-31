@@ -33,6 +33,7 @@ ELE-main/
 │   ├── fold_details/           # Details of the partitioning for each fold in cross-validation.
 │   ├── SVM/                    # SVM-based cross-validation and prediction
 │   └── MLP/                    # MLP-based cross-validation and prediction
+├── results/                    # Predictions of ELE
 └── experiment/                 # Scripts for experimental procedures
 ```
 
