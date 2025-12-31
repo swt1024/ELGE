@@ -30,12 +30,12 @@ annotate/mouse/*.csv
 classifier/SVM/performance/
 classifier/MLP/performance/
 data/**/*.csv
-data/**/*.txt
+data/**/*.csv
+data/raw/*.txt
 HinSAGE/human
 HinSAGE/mouse
 experiment/**/*.txt
 experiment/**/*.csv
-experiment/**/**/*.csv
 features/protein/human/*.txt
 reference_lncRNA/mouse/transcript/
 reference_lncRNA/human/transcript/
