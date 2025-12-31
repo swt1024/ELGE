@@ -1,2 +1,0 @@
-Model,Tissue,Sensitivity(Recall),Specificity,PPV(Precision),F1_Score,Accuracy,MCC,ROC_AUC,PR_AUC
-SVM,brain,0.9091,0.9545,0.9524,0.9302,0.9318,0.8645,0.985,0.9857
