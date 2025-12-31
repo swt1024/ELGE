@@ -1,0 +1,1 @@
+#### The prediction results of ELE for both human and mouse will be stored in this folder.
