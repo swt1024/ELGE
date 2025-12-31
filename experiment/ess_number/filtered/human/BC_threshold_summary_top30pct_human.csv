@@ -1,4 +1,0 @@
-tissue,total_essential_with_score,retained_top30pct,percent_retained,BC_threshold_80th_percentile
-heart,22810,6843,30.0,5.907220108766567e-07
-lung,25542,7669,30.025056769242813,5.577102130219058e-07
-stomach,16302,4891,30.002453686664214,5.594427614637708e-07

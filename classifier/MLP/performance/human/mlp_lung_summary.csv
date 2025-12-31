@@ -1,0 +1,2 @@
+Model,Tissue,Sensitivity(Recall),Specificity,PPV(Precision),F1_Score,Accuracy,MCC,ROC_AUC,PR_AUC
+MLP,lung,0.8402,0.7963,0.8049,0.8222,0.8183,0.6371,0.8902,0.887

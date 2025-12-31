@@ -106,19 +106,6 @@ for x in range(0, 1001):
         all_prob_scores.extend(prob)
         all_pred_labels.extend(pred.tolist())
 
-        fold_data = {
-                'Fold': fold + 1,
-                'Train_IDs': [list(ids_train)],
-                'Train_Labels': [list(y_train)],
-                'Test_IDs': [list(ids_test)],
-                'Test_Labels': [list(y_test)],
-                'Predictions': [list(pred)],
-                'Decision_Scores': [list(prob)]
-            }
-        fold_df = pd.DataFrame(fold_data)
-        experiment_records = pd.concat([experiment_records, fold_df], ignore_index=True)
-
-
     # Convert lists to arrays for performance evaluation
     all_true_labels = np.array(all_true_labels)
     all_prob_scores = np.array(all_prob_scores)
@@ -157,8 +144,5 @@ for x in range(0, 1001):
     # Append the current metrics row to the CSV file immediately
     metrics_df = pd.DataFrame([metrics_row])  # Create a DataFrame for the current row
     metrics_df.to_csv(save_path, mode='a', header=False, index=False)
-
-    # Save experiment records for the current shuffle iteration
-    experiment_records.to_csv(f'./experiment_details/{species}/mlp/{tissue}/{tissue}_experiment_details_{x}.csv', index=False)
 
     print(f"Processed and saved results for {shuffle_file}")

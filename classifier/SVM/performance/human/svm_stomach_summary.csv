@@ -1,0 +1,2 @@
+Model,Tissue,Sensitivity(Recall),Specificity,PPV(Precision),F1_Score,Accuracy,MCC,ROC_AUC,PR_AUC
+SVM,stomach,0.8879,0.8625,0.8659,0.8768,0.8752,0.7507,0.9335,0.9335
