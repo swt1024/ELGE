@@ -30,7 +30,6 @@ annotate/mouse/*.csv
 classifier/SVM/performance/
 classifier/MLP/performance/
 data/**/*.csv
-data/**/*.csv
 data/raw/*.txt
 HinSAGE/human
 HinSAGE/mouse
