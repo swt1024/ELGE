@@ -1,0 +1,16 @@
+Category,Term,P-Value,Fold Enrichment,FDR
+GOTERM_BP_DIRECT,cytoplasmic translation,3.52e-19,5.16,1.68e-15
+GOTERM_BP_DIRECT,translation,3.51e-13,2.91,8.4e-10
+GOTERM_BP_DIRECT,ubiquitin-dependent protein catabolic process,7.91e-10,2.54,1.26e-06
+GOTERM_BP_DIRECT,protein K48-linked ubiquitination,7.7e-08,3.29,9.22e-05
+GOTERM_BP_DIRECT,RNA splicing,1.25e-07,2.36,0.00012
+GOTERM_CC_DIRECT,cytosol,1.6e-49,1.58,1.4299999999999999e-46
+GOTERM_CC_DIRECT,nucleus,2.4799999999999997e-48,1.53,1.11e-45
+GOTERM_CC_DIRECT,nucleoplasm,4.9199999999999994e-46,1.7,1.4600000000000002e-43
+GOTERM_CC_DIRECT,cytoplasm,1.07e-27,1.4,2.39e-25
+GOTERM_CC_DIRECT,cytosolic ribosome,1.11e-19,5.21,1.98e-17
+GOTERM_MF_DIRECT,protein binding,3.78e-44,1.19,6.03e-41
+GOTERM_MF_DIRECT,RNA binding,3.89e-34,2.09,3.1e-31
+GOTERM_MF_DIRECT,mRNA binding,3.13e-10,2.49,1.67e-07
+GOTERM_MF_DIRECT,structural constituent of ribosome,6.02e-10,2.74,2.4e-07
+GOTERM_MF_DIRECT,cadherin binding,4.41e-08,2.12,1.21e-05

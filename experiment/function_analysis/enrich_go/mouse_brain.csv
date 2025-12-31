@@ -1,0 +1,16 @@
+Category,Term,P-Value,Fold Enrichment,FDR
+GOTERM_BP_DIRECT,chromatin remodeling,1.4e-14,1.94,6.16e-11
+GOTERM_BP_DIRECT,positive regulation of transcription by RNA polymerase II,2.02e-14,1.65,6.16e-11
+GOTERM_BP_DIRECT,mRNA processing,4.44e-11,2.37,9.04e-08
+GOTERM_BP_DIRECT,RNA splicing,5.31e-10,2.48,8.11e-07
+GOTERM_BP_DIRECT,negative regulation of transcription by RNA polymerase II,1.19e-09,1.58,1.45e-06
+GOTERM_CC_DIRECT,cytosol,6.2e-38,1.54,6.14e-35
+GOTERM_CC_DIRECT,cytoplasm,3.11e-33,1.39,1.5399999999999998e-30
+GOTERM_CC_DIRECT,nucleus,4.6600000000000004e-29,1.38,1.54e-26
+GOTERM_CC_DIRECT,nucleoplasm,6.32e-29,1.53,1.5700000000000001e-26
+GOTERM_CC_DIRECT,glutamatergic synapse,4.28e-25,2.12,8.489999999999999e-23
+GOTERM_MF_DIRECT,protein binding,2.39e-49,1.53,4.35e-46
+GOTERM_MF_DIRECT,chromatin binding,5.23e-16,2.09,4.76e-13
+GOTERM_MF_DIRECT,ATP binding,4.8e-14,1.57,2.91e-11
+GOTERM_MF_DIRECT,RNA binding,7.57e-13,1.77,3.45e-10
+GOTERM_MF_DIRECT,protein kinase binding,6.91e-12,1.9,2.52e-09

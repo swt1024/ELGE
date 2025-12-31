@@ -1,0 +1,16 @@
+Category,Term,P-Value,Fold Enrichment,FDR
+GOTERM_BP_DIRECT,chromatin remodeling,5.17e-09,1.76,2.93e-05
+GOTERM_BP_DIRECT,actin cytoskeleton organization,7.59e-08,2.25,0.000215
+GOTERM_BP_DIRECT,nervous system development,1.21e-07,2.03,0.000228
+GOTERM_BP_DIRECT,negative regulation of transcription by RNA polymerase II,3.68e-07,1.52,0.000522
+GOTERM_BP_DIRECT,positive regulation of transcription by RNA polymerase II,5.97e-07,1.44,0.000678
+GOTERM_CC_DIRECT,glutamatergic synapse,7.9499999999999995e-25,2.21,7.32e-22
+GOTERM_CC_DIRECT,postsynaptic density,2.23e-22,2.97,9.71e-20
+GOTERM_CC_DIRECT,cytosol,3.16e-22,1.43,9.71e-20
+GOTERM_CC_DIRECT,cytoplasm,1.21e-18,1.3,2.79e-16
+GOTERM_CC_DIRECT,synapse,3.49e-13,1.92,6.42e-11
+GOTERM_MF_DIRECT,protein binding,5.350000000000001e-29,1.42,9.26e-26
+GOTERM_MF_DIRECT,chromatin binding,2.66e-09,1.84,2.3e-06
+GOTERM_MF_DIRECT,GTPase activator activity,1.43e-08,2.29,8.25e-06
+GOTERM_MF_DIRECT,protein kinase binding,2.29e-08,1.78,9.91e-06
+GOTERM_MF_DIRECT,unfolded protein binding,9.17e-08,3.15,3.15e-05

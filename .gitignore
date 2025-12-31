@@ -27,18 +27,12 @@
 
 annotate/human/*.csv
 annotate/mouse/*.csv
-classifier/MLP/experiment_details
-classifier/SVM/experiment_details
 classifier/SVM/performance/human/grid_details
 data/raw/*.csv
 data/raw/*.txt
 HinSAGE/human
 HinSAGE/mouse
-experiment/**/*.csv
 experiment/**/*.txt
-experiment/**/*.md
-omics/protein/mouse/filtered_exp.csv
-omics/protein/human/filtered_exp.csv
-omics/protein/human/*.txt
+features/protein/human/*.txt
 reference_lncRNA/mouse/transcript/
 reference_lncRNA/human/transcript/

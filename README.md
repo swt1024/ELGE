@@ -121,16 +121,16 @@ pip install -r requirements.txt
 	  [Download shared ZIP](https://downloads.thebiogrid.org/File/BioGRID/Release-Archive/BIOGRID-4.4.248/BIOGRID-ORGANISM-4.4.248.tab3.zip)
 
 #### Step3: Download and preprocess the data used for annotating nodes.
-`omics/conservation`:
+`features/conservation`:
 Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
-`omics/epigenomic`:
+`features/epigenomic`:
 Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues. Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
-`omics/protein/mouse`:
+`features/protein/mouse`:
 1. Run the `download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
 	- `MGI_filter_conditions.csv`: Contains file names and the corresponding filter conditions for each dataset.
 2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
 3. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
-`omics/protein/human`:
+`features/protein/human`:
 1. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which contains data of the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
 2. Run the `filter.py` script to filter the expression data files, obtain `filtered_exp.csv`.
 3. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
@@ -158,7 +158,7 @@ python train.py --layer_sizes 64 256 \
 	--samples_num 20 25 \
 	--lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" \
 	--protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" \
-	--lppi_file "../annotate/human/weighted_valid_inter.csv" \
+	--lppi_file "../annotate/human/valid_inter.csv" \
 	--embedding_save_path "./human/lncRNA_embeddings_heart.csv"
 ```
 |                        |                                |
