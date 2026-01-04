@@ -181,8 +181,8 @@ If you want to train the model on your own dataset, you need to provide the foll
 - CSV files containing features for lncRNAs and proteins.
 - Must include a lncRNA_id column (for lncRNAs) and a protein_id column (for proteins).
 2. LPPI File (--lppi_file):
-- A CSV file that defines interactions between lncRNAs and proteins.
-- Must include lncRNA_id and protein_id columns.
+- A CSV file that defines LPI interactions and PPI interactions.
+- Must include two columns(lncRNA_id and protein_id for LPI and two protein_id columns for PPI).
 
 **Note:**  
 You can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
