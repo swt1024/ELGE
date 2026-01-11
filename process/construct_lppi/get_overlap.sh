@@ -16,11 +16,6 @@ if [ ! -f "$bedfile" ]; then
     exit 1
 fi
 
-if [ ! -f "$outputfile" ]; then
-    echo "Error: File $outputfile not found."
-    exit 1
-fi
-
 # Run bedtools intersect to find overlapping regions and process the data
 bedtools intersect -a "$bedfile" -b "$bedfile" -s -wo | \
 awk '{

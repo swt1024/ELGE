@@ -20,8 +20,8 @@ esslnc_id = set(esslnc['lncRNA_id'])
 nonesslnc_id = set(nonesslnc['lncRNA_id'])
 
 # Prepare data arrays
-ids_positive = list(esslnc_id)  # Convert set to list
-ids_negative = list(nonesslnc_id)  # Convert set to list
+ids_positive = sorted(esslnc_id)
+ids_negative = sorted(nonesslnc_id)
 
 # Combine datasets
 y_all = np.hstack((np.ones(len(ids_positive)), np.zeros(len(ids_negative))))

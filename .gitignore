@@ -20,6 +20,7 @@
 *.bw
 *.rpt
 *.gct
+*.xlsx
 
 # Ignore the following folders
 .vscode/
@@ -35,7 +36,8 @@ HinSAGE/human
 HinSAGE/mouse
 experiment/**/*.txt
 experiment/**/*.csv
-features/protein/human/*.txt
+experiment/**/*.xlsx
+features/protein/**/*.tsv
 reference_lncRNA/mouse/transcript/
 reference_lncRNA/human/transcript/
 results/human

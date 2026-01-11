@@ -7,6 +7,11 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import MinMaxScaler
 import os
 
+import warnings
+from sklearn.exceptions import ConvergenceWarning
+
+warnings.filterwarnings("ignore", category=ConvergenceWarning)
+
 # Set up command line arguments
 parser = argparse.ArgumentParser(description='Process species and tissue type.')
 parser.add_argument('species', type=str, help='The species to process (e.g., mouse, human)')
@@ -50,7 +55,7 @@ if not os.path.exists(save_path):
     metrics_df = pd.DataFrame(columns=header)
     metrics_df.to_csv(save_path, mode='w', header=True, index=False)
 
-# Loop through shuffled datasets (1 to 1000)
+# Loop through shuffled datasets (0 to 1000)
 for x in range(0, 1001):
     shuffle_file = f"shuffled_{x}.csv"
     
@@ -62,11 +67,11 @@ for x in range(0, 1001):
 
     # Initialize KFold and LeaveOneOut
     if species == 'mouse':
-        cv = LeaveOneOut()
-        layer_size = (32, 16) 
+        cv = LeaveOneOut() 
+        layer_size = (256,32)
     else:
         cv = KFold(n_splits=10, shuffle=True, random_state=42)
-        layer_size = (64, 32)
+        layer_size = (128,64)
 
     # Initialize lists to store true labels and scores for performance evaluation
     all_true_labels = []
@@ -92,7 +97,7 @@ for x in range(0, 1001):
 			activation='relu',
 			alpha=1e-3,
 			learning_rate_init=0.01,
-			max_iter=500,
+			max_iter=200,
 			random_state=42
 		)
         mlp.fit(X_train_scaled, y_train)

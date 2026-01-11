@@ -4,8 +4,8 @@ import os
 import argparse
 from sklearn.model_selection import KFold, LeaveOneOut
 from sklearn.metrics import confusion_matrix, matthews_corrcoef, roc_curve, auc, precision_recall_curve
-from sklearn.svm import LinearSVC
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
 
 # Set up command line arguments
 parser = argparse.ArgumentParser(description='Process species and tissue type.')
@@ -62,11 +62,13 @@ for x in range(0, 1001):
 
     # Initialize KFold and LeaveOneOut
     if species == 'mouse':
-        cv = LeaveOneOut()
         C = 10
+        gamma = 0.01
+        cv = LeaveOneOut()
     else:
-        cv = KFold(n_splits=10, shuffle=True, random_state=42)
         C = 100
+        gamma = 0.001
+        cv = KFold(n_splits=10, shuffle=True, random_state=42)
 
     # Initialize lists to store true labels and decision scores for performance evaluation
     all_true_labels = []
@@ -81,12 +83,12 @@ for x in range(0, 1001):
         ids_train, ids_test = ids_all[train_index], ids_all[test_index]
 
         # Apply MinMaxScaler
-        scaler = MinMaxScaler()
+        scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
 
         # Train LinearSVC model
-        svm = LinearSVC(C=C, dual=False)
+        svm = SVC(kernel="rbf", C=C, gamma=gamma)
         svm.fit(X_train_scaled, y_train)
 
         # Get decision scores and predictions
@@ -122,14 +124,14 @@ for x in range(0, 1001):
     # Store metrics for the current shuffle iteration
     metrics_row = {
         'Shuffle_File': shuffle_file,
-        'Sensitivity(Recall)': sensitivity,
-        'Specificity': specificity,
-        'PPV(Precision)': ppv,
-        'F1_Score': f1_score,
-        'Accuracy': accuracy,
-        'MCC': mcc,
-        'roc_auc': roc_auc,
-        'pr_auc': pr_auc
+        "Sensitivity": round(sensitivity, 4),
+        "Specificity": round(specificity, 4),
+        "PPV": round(ppv, 4),
+        "F1 Score": round(f1_score, 4),
+        "Accuracy": round(accuracy, 4),
+        "MCC": round(mcc, 4),
+        "ROC AUC": round(roc_auc, 4),
+        "PR AUC": round(pr_auc, 4),
     }
 
     # Append the current metrics row to the CSV file immediately

@@ -6,9 +6,9 @@ from sklearn.metrics import (
 
 # === Step 1: read data ===
 
-gic_file = '../../results/human/human_GIC_score.csv'
-essential_file = '../../data/benchmark/human/ess_lnc.csv'
-nonessential_file = '../../data/benchmark/human/noness_lnc.csv'
+gic_file = '../../results/mouse/sorted_GIC_score.csv'
+essential_file = '../../data/benchmark/mouse/ess_lnc.csv'
+nonessential_file = '../../data/benchmark/mouse/noness_lnc.csv'
 
 gic_df = pd.read_csv(gic_file)
 ess_ids = pd.read_csv(essential_file, header=None)[0].tolist()
@@ -23,7 +23,7 @@ gic_df['Label'] = gic_df['lncRNA_id'].apply(lambda x: 1 if x in ess_ids else (0 
 gic_df.dropna(inplace=True)
 
 y_true = gic_df['Label'].astype(int).values
-y_scores = gic_df['Score'].values
+y_scores = gic_df['GIC_score'].values
 
 # === Step 2: calculate metrics ===
 def compute_metrics(y_true, y_pred):
@@ -38,8 +38,8 @@ def compute_metrics(y_true, y_pred):
         'Sensitivity': f"{sen:.4f}",
         'Specificity': f"{spe:.4f}",
         'PPV': f"{ppv:.4f}",
-        'Accuracy': f"{acc:.4f}",
         'F1': f"{f1:.4f}",
+        'Accuracy': f"{acc:.4f}",
         'MCC': f"{mcc:.4f}"
     }
 

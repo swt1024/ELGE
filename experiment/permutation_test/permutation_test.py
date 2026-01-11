@@ -13,9 +13,10 @@ def compute_p_value(obs_performance, random_performances):
 	return p_values
 
 # List to collect all results
-results = []
+
 
 for species in ['human','mouse']:
+	results = []
 	for model_name in model_names:
 		if species == 'human':
 			tissues = ['heart','lung','stomach']

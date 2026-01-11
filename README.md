@@ -76,7 +76,7 @@ pip install -r requirements.txt
 
 	`reference_lncRNA/mouse/gtf`:
 	- `NONCODEv5_mouse_mm10_lncRNA.gtf` – [Download](http://v5.noncode.org/datadownload/NONCODEv5_mouse_mm10_lncRNA.gtf.gz)  
-	- `ensembl/`: Run `./download.sh` to download multiple GTF files from Ensembl, including v84–v100. Example (Release 100): [Mus_musculus.GRCm38.100.gtf.gz](https://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
+	- `ensembl/`: Run `./download.sh` to download multiple GTF files from Ensembl, including v84–v100 and v103. Example (Release 100): [Mus_musculus.GRCm38.100.gtf.gz](https://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz) More versions available at: [Ensembl FTP Repository](https://ftp.ensembl.org/pub/)
 	
 	`reference_lncRNA/mouse/bed`:
 	- `NONCODEv6_mm10.lncAndGene.bed` – [Download](http://www.noncode.org/datadownload/NONCODEv6_mm10.lncAndGene.bed.gz)  
@@ -127,20 +127,18 @@ pip install -r requirements.txt
 Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
 `features/epigenomic`:
 Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues. Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
-`features/protein/mouse`:
-1. Run the `download.py` script to download mouse gene expression data for multiple tissues from MGI. The script uses the following file:
-	- `MGI_filter_conditions.csv`: Contains file names and the corresponding filter conditions for each dataset.
-2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
-3. Run the `filter.py` script to filter the expression data files based on the conditions specified in the `MGI_filter_conditions.csv` file.
 `features/protein/human`:
-1. Download `GTEx_Analysis_2022-06-06_v10_RNASeQCv2.4.2_gene_median_tpm.gct`, which contains data of the expression levels of human protein-coding genes from the GTEx database. - [Download](https://storage.googleapis.com/adult-gtex/bulk-gex/v10/rna-seq/GTEx_Analysis_v10_RNASeQCv2.4.2_gene_median_tpm.gct.gz)
-2. Run the `filter.py` script to filter the expression data files, obtain `filtered_exp.csv`.
-3. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
+1. Run the `download.sh` script to download human gene expression data for multiple tissues from ENCODE. 
+2. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
+`features/protein/mouse`:
+1. Run the `download.sh` script to download mouse gene expression data for multiple tissues from ENCODE. 
+2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
 
 ### 2. Construct lncRNA-protein-protein heterogeneous network
 
-1. Run `process/construct_lppi/get_lpi.py` to preprocess the NPInter LPI data and construct a weighted LPI network.
-2. Run `process/construct_lppi/get_lppi.py` to filter the BioGRID PPI data and generate the LPPI network.
+1. Run `process/construct_lppi/get_lpi.ipynb` to preprocess the NPInter LPI data and construct a unweighted LPI network.
+2. Run the first two code cells in `process/construct_lppi/node_deduplication.ipynb` to obtain the genomic coordinate ranges of lncRNAs. Then run `./get_overlap.sh human_lncRNA_0-based.bed human_overlap.txt` and `./get_overlap.sh mouse_lncRNA_0-based.bed mouse_overlap.txt` to identify duplicate lncRNA nodes. Finally, run the last two code cells in `process/construct_lppi/node_deduplication.ipynb` to deduplicate the lncRNA nodes.
+3. Run `process/construct_lppi/get_lppi.ipynb` to filter the BioGRID PPI data and generate the LPPI network.
 
 ### 3. Node feature annotation for the LPPI network
 
@@ -156,7 +154,7 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 
 You can train the model using the provided shell script:
 ```
-python train.py --layer_sizes 64 256 --samples_num 20 25 --lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" --protein_nodes_file "../annotate/human/transformed_protein_annotation.csv" --lppi_file "../annotate/human/valid_inter.csv" --embedding_save_path "./human/lncRNA_embeddings_heart.csv"
+python train.py --layer_sizes 32 256 --samples_num 5 25 --lncRNA_nodes_file "../annotate/human/valid_heart_annotation.csv" --protein_nodes_file "../annotate/human/protein_annotation_heart.csv" --lppi_file "../annotate/human/unweighted_inter.csv" --embedding_save_path "./human/lncRNA_embeddings_heart.csv"
 ```
 |                        |                                |
 |------------------------|--------------------------------|
@@ -172,8 +170,8 @@ The following are the optimal parameters used on the datasets in this study:
 
 | dataset | The number of sampled neighboring nodes | The dimensions of the hidden layers |
 | ------- | :-------------------------------------: | :---------------------------------: |
-| Human   |                 (20,25)                 |              (64,256)               |
-| Mouse   |                 (10,15)                 |              (32, 64)               |
+| Human   |                 (5 ,25)                 |              (32,256)               |
+| Mouse   |                 (10,15)                 |              (64,256)               |
 
 If you want to train the model on your own dataset, you need to provide the following files:
 
@@ -197,21 +195,21 @@ You can then use the first two code cells in `classifier/SVM/svm.ipynb` to evalu
 
 #### SVM model
 
-| dataset |   C   | kernel function |
-| :-----: |  :-:  | :-------------: |
-|  Human  |  100  |     linear      |
-|  Mouse  |  10   |     linear      |
+| dataset |   C   |   gamma  | kernel function |
+| :-----: |  :-:  |    :-:   | :-------------: |
+|  Human  |  100  |   0.001  |       rbf       |
+|  Mouse  |  10   |   0.01   |       rbf       |
 
 The table above shows the parameters used by the SVM model under different datasets.
-For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart`, and get accuracy, precision and other performance indicators.
-You can run the fifth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lpi.csv`, `data/benchmark/human/noness_lpi.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get predicted results.
+For example, users can run the forth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lnc.csv`, `data/benchmark/human/noness_lnc.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get accuracy, precision and other performance indicators.
+You can run the fifth code cell in `svm.ipynb`, input `data/benchmark/human/ess_lnc.csv`, `data/benchmark/human/noness_lnc.csv` and `HinASGE/human/lncRNA_embeddings_heart.csv`, and get predicted results.
 
 #### MLP model
 
 | dataset | The number of neurons in the hidden layer |
 | :-----: | :---------------------------------------: |
 |  Human  |                 (128,64)                  |
-|  Mouse  |                 (32, 16)                  |
+|  Mouse  |                 (256,32)                  |
 
 The table above shows the parameters used by the MLP model under different datasets.
 
