@@ -109,11 +109,8 @@ def run_deterministic_hinsage(LPPI_graph, layer_sizes, num_samples, epochs, seed
 # =========================
 # Hyperparameter grids
 # =========================
-#layer_size_1 = [16, 32, 64]
-#layer_size_2 = [32, 64, 128, 256]
-
-layer_size_1 = [64]
-layer_size_2 = [32]
+layer_size_1 = [16, 32, 64]
+layer_size_2 = [32, 64, 128, 256]
 
 samples_num_1 = [5, 10, 15, 20]
 samples_num_2 = [10, 15, 20, 25]
