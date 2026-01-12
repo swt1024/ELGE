@@ -6,9 +6,9 @@ from sklearn.metrics import (
 
 # === Step 1: read data ===
 
-gic_file = '../../results/mouse/sorted_GIC_score.csv'
-essential_file = '../../data/benchmark/mouse/ess_lnc.csv'
-nonessential_file = '../../data/benchmark/mouse/noness_lnc.csv'
+gic_file = '../../results/human/sorted_GIC_score.csv'
+essential_file = '../../data/benchmark/human/ess_lnc.csv'
+nonessential_file = '../../data/benchmark/human/noness_lnc.csv'
 
 gic_df = pd.read_csv(gic_file)
 ess_ids = pd.read_csv(essential_file, header=None)[0].tolist()
