@@ -125,11 +125,14 @@ pip install -r requirements.txt
 #### Step3: Download and preprocess the data used for annotating nodes.
 `features/conservation`:
 Run the `download.sh` script to download the phylop and phastCons scores for both human and mouse genomes in BigBed format from UCSC.
+
 `features/epigenomic`:
 Run `python download.py human` and `python download.py mouse` to download epigenomic peak data in BigBed format from ENCODE for various tissues. Specific download links can be found in the respective species folder and tissue folder under the `download.sh` file.
+
 `features/protein/human`:
 1. Run the `download.sh` script to download human gene expression data for multiple tissues from ENCODE. 
 2. Download GO term data for human protein-coding genes `go.csv` from Ensembl BioMart.
+
 `features/protein/mouse`:
 1. Run the `download.sh` script to download mouse gene expression data for multiple tissues from ENCODE. 
 2. Download the `mgi.gaf` file, which contains the Gene Ontology (GO) term annotations for mouse genes. - [Download](https://current.geneontology.org/annotations/mgi.gaf.gz)
@@ -140,7 +143,13 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 2. Run the first two code cells in `process/construct_lppi/node_deduplication.ipynb` to obtain the genomic coordinate ranges of lncRNAs. Then run `./get_overlap.sh human_lncRNA_0-based.bed human_overlap.txt` and `./get_overlap.sh mouse_lncRNA_0-based.bed mouse_overlap.txt` to identify duplicate lncRNA nodes. Finally, run the last two code cells in `process/construct_lppi/node_deduplication.ipynb` to deduplicate the lncRNA nodes.
 3. Run `process/construct_lppi/get_lppi.ipynb` to filter the BioGRID PPI data and generate the LPPI network.
 
-### 3. Node feature annotation for the LPPI network
+### 3. Construct benchmark dataset
+1. Run `process/benchmark/get_trans.ipynb` to obtain transcript information for each lncRNA gene and filter out transcripts longer than 20,000 nt.
+2. In the `process/benchmark` folder, run `./cal_MFE.sh ./human/transcript_sequences.fasta ./human/trans_MFE.csv` and `./cal_MFE.sh ./mouse/transcript_sequences.fasta ./mouse/trans_MFE.csv` to compute the MFE for each transcript.
+3. Run `construct_benchmark.ipynb` to calculate the GIC score and obtain the positive and negative samples.
+
+
+### 4. Node feature annotation for the LPPI network
 
 **human**
 1. Run the `annotate/human/lncRNA_feature_annotate.ipynb` notebook to annotate features for all lncRNA nodes in the human LPPI network.
@@ -150,7 +159,7 @@ Run `python download.py human` and `python download.py mouse` to download epigen
 1. Run the `annotate/mouse/lncRNA_feature_annotate.ipynb` notebook to annotate features for all lncRNA nodes in the mouse LPPI network.
 2. Run the `annotate/mouse/protein_feature_annotate.ipynb` notebook to annotate features for all protein nodes in the mouse LPPI network.
 
-### 4. Heterogeneous representation learning
+### 5. Heterogeneous representation learning
 
 You can train the model using the provided shell script:
 ```
@@ -189,10 +198,6 @@ If you want to train the model on your own dataset, you need to provide the foll
 You can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
 You can then use the first two code cells in `classifier/SVM/svm.ipynb` to evaluate the model's performance under different parameter settings.
 
-### 5. Construct benchmark dataset
-1. Run `process/benchmark/get_trans.ipynb` to obtain transcript information for each lncRNA gene and filter out transcripts longer than 20,000 nt.
-2. In the `process/benchmark` folder, run `./cal_MFE.sh ./human/transcript_sequences.fasta ./human/trans_MFE.csv` and `./cal_MFE.sh ./mouse/transcript_sequences.fasta ./mouse/trans_MFE.csv` to compute the MFE for each transcript.
-3. Run `construct_benchmark.ipynb` to calculate the GIC score and obtain the positive and negative samples.
 
 ### 6. Supervised machine learning
 
