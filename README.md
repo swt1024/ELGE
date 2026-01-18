@@ -1,4 +1,4 @@
-# ELE: Elucidating tissue-specific lncRNA essentiality by using deep graph neural networks for heterogenous genomic and epigenomic information aggregation
+# ELE: Estimating tissue-specific lncRNA gene essentiality using graph neural networks
 
 In this work, we proposed a framework to identify essential lncRNAs by taking advantage of the topological feature of the lncRNA-protein-protein heterogeneous network and genomic and epigenomic features. We used genomic and epigenomic features to annotate nodes at lncRNA-protein-protein interaction network and introduced the HinSAGE algorithm to learn node representation for lncRNAs in the lncRNA-protein-protein heterogeneous network. We named this method as ELE.
 
@@ -216,4 +216,4 @@ The table above shows the parameters used by the MLP model under different datas
 The prediction results of SVM and MLP will be stored in the `results/human` and `results/mouse` directories. The `results` folder contains the prediction outcomes of SVM and MLP across different tissues. It also includes the intersection of the essential lncRNA genes predicted by the two classifiers for each tissue, as well as the union of essential lncRNA genes predicted across multiple tissues for each species. These results can be used for subsequent experimental analyses, including but not limited to the experiments in `experiment`.
 
 ### Citation
-Shi Wan-Ting, Liu Ying-Dong, Gong Xiu-Jun, Du Pu-Feng. ELE: Elucidating tissue-specific lncRNA essentiality by using deep graph neural networks for heterogenous genomic and epigenomic information aggregation[J]. (submitted).
+Shi Wan-Ting, Liu Ying-Dong, Gong Xiu-Jun, Du Pu-Feng. ELE: Estimating tissue-specific lncRNA gene essentiality using graph neural networks[J]. (submitted).
