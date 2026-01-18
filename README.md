@@ -180,7 +180,10 @@ If you want to train the model on your own dataset, you need to provide the foll
 - Must include a lncRNA_id column (for lncRNAs) and a protein_id column (for proteins).
 2. LPPI File (--lppi_file):
 - A CSV file that defines LPI interactions and PPI interactions.
-- Must include two columns(lncRNA_id and protein_id for LPI and two protein_id columns for PPI).
+- Must include three columns:
+  - For LPI interactions: lncRNA_id, protein_id, and weight.
+  - For PPI interactions: two protein_id columns and weight.
+- The weight column represents the edge weight. In this study, all edge weights are set to 1.
 
 **Note:**  
 You can run `./HinSAGE/tune.py` to generate node embeddings for tuning model parameters.  
