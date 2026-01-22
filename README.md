@@ -95,6 +95,9 @@ pip install -r requirements.txt
 	```
 	# Preprocess NONCODE BED files
 	./pro_bed.sh
+
+	# Fix NONCODEv6_human_hg38_lncRNA.gtf
+	python fix_gtf.py
 	
 	# Convert Ensembl GTF files into BED files
 	python gtf2bed.py ../human/gtf/ensembl ../human/bed/ensembl
