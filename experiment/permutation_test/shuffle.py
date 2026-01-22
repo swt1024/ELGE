@@ -40,12 +40,12 @@ original_file_path = os.path.join(output_dir, 'shuffled_0.csv')
 original_data.to_csv(original_file_path, index=False)
 print(f"Saved original data to {original_file_path}")
 
-random.seed(42)
+rng = np.random.default_rng(seed=42)
 
 # Shuffle and save 1000 times
 for shuffle_num in range(1000):
     # Shuffle the labels (y_all) for the given iteration
-    shuffled_y_all = random.sample(list(y_all), len(y_all))  # Convert y_all to list if needed
+    shuffled_y_all = rng.permutation(y_all)  # Convert y_all to list if needed
 
     # Store the shuffled data into a new CSV file for each iteration
     shuffled_file_path = os.path.join(output_dir, f'shuffled_{shuffle_num+1}.csv')
