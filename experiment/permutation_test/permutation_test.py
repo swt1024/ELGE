@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-model_names = ['svm', 'mlp']
+model_names = ['svm','mlp']
 
 # Function to compute the p-value based on the observed performance and random performances
 def compute_p_value(obs_performance, random_performances):
@@ -15,7 +15,7 @@ def compute_p_value(obs_performance, random_performances):
 # List to collect all results
 
 
-for species in ['human','mouse']:
+for species in ['mouse','human']:
 	results = []
 	for model_name in model_names:
 		if species == 'human':

@@ -36,6 +36,10 @@ HinSAGE/human
 HinSAGE/mouse
 experiment/**/*.txt
 experiment/**/*.csv
+!experiment/permutation_test/human_shuffled/*.csv
+!experiment/permutation_test/mouse_shuffled/*.csv
+!experiment/ess_protein/CSEGs_CEGs.txt
+!experiment/ess_protein/Mus musculus_genes.csv
 experiment/**/*.xlsx
 features/protein/**/*.tsv
 reference_lncRNA/mouse/transcript/

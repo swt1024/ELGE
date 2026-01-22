@@ -6,7 +6,7 @@ from sklearn.metrics import (
 
 # === Step 1: read data ===
 
-gic_file = '../../results/human/sorted_GIC_score.csv'
+gic_file = '../../process/benchmark/human/sorted_GIC_score.csv'
 essential_file = '../../data/benchmark/human/ess_lnc.csv'
 nonessential_file = '../../data/benchmark/human/noness_lnc.csv'
 
